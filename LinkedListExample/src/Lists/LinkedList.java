@@ -21,13 +21,6 @@ public class LinkedList<T> implements Iterable<T>{
 		head = tail = null;
 	}
 
-	public LinkedList(T e) {
-		size = 1;
-		head = new ListNode<T>();
-		head.element = e;
-		tail = head;
-	}
-
 	public void addToFront(T e) {
 		ListNode<T> newNode = new ListNode<T>();
 		newNode.element = e;
@@ -40,10 +33,11 @@ public class LinkedList<T> implements Iterable<T>{
 	}
 
 	public void addToRear(T e) {
-		ListNode<T> newNode = new ListNode<T>();
 		if (isEmpty()) {
 			addToFront(e);
-		} else {
+		} 
+		else {
+		    ListNode<T> newNode = new ListNode<T>();
 			newNode.element = e;
 			newNode.next = null;
 			tail.next = newNode;
@@ -86,6 +80,40 @@ public class LinkedList<T> implements Iterable<T>{
 		tail.next = null;
 		return ret;
 	}
+
+	// TODO:
+	//   remove(e) 		remove node containing element matching e
+	//   contains(e)    is an element matching e stored in list
+	//   addAfter(e)    add element after node containing element matching e
+	
+	public String toString() {
+		String ret = "";
+		ListNode<T> current = head;
+		while (current != null) {
+			ret += current.element + "\n";
+			current = current.next;
+		}
+		return ret;
+	}
+	
+	public T first() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("Empty list");
+		}
+		
+		T ret = head.element;
+		
+		return ret;
+	}
+	
+	public T last() {
+		if (isEmpty()) {
+			throw new NoSuchElementException("Empty list");
+		}
+		T ret = tail.element;
+		return ret;
+	}	
+	
 
 	public Iterator<T> iterator() {
 		return new ListIterator<T>(head);
