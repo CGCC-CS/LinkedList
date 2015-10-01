@@ -1,11 +1,9 @@
-// Simplified singly linked list class
-
 package Lists;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList<T> implements Iterable<T>{
+public class LinkedList<T> implements Iterable<T> {
 
 	private int size;
 	private ListNode<T> head;
@@ -15,41 +13,41 @@ public class LinkedList<T> implements Iterable<T>{
 		private T element;
 		private ListNode<T> next;
 	}
-
+	
 	public LinkedList() {
 		size = 0;
 		head = tail = null;
 	}
-
+	
 	public void addToFront(T e) {
 		ListNode<T> newNode = new ListNode<T>();
 		newNode.element = e;
 		newNode.next = head;
 		head = newNode;
-		size++;
+		size ++;
 		if (size == 1) {
 			tail = head;
 		}
 	}
-
+	
 	public void addToRear(T e) {
 		if (isEmpty()) {
 			addToFront(e);
-		} 
+		}
 		else {
-		    ListNode<T> newNode = new ListNode<T>();
+			ListNode<T> newNode = new ListNode<T>();
 			newNode.element = e;
 			newNode.next = null;
 			tail.next = newNode;
 			tail = newNode;
 		}
-		size++;
+		size ++;
 	}
-
+	
 	public int size() {
 		return size;
 	}
-
+	
 	public boolean isEmpty() {
 		return (size <= 0);
 	}
@@ -60,86 +58,86 @@ public class LinkedList<T> implements Iterable<T>{
 		}
 		T ret = head.element;
 		head = head.next;
-		size--;
+		size --;
 		if (isEmpty()) {
 			tail = null;
 		}
+		if (size == 1) {
+			tail = head;
+		}
 		return ret;
 	}
-
+	
 	public T removeLast() {
 		if (isEmpty()) {
 			throw new NoSuchElementException("Empty list");
 		}
 		T ret = tail.element;
-		ListNode<T> newLast = head;
-		while (newLast.next != tail) {
-			newLast = newLast.next;
+		if (size == 1) {
+			ret = removeFirst();
 		}
-		tail = newLast;
-		tail.next = null;
+		else {
+			ListNode<T> newLast = head;
+			while (newLast.next != tail) {
+				newLast = newLast.next;
+			}
+			tail = newLast;
+			tail.next = null;
+			size --;
+		}
 		return ret;
 	}
-
-	// TODO:
-	//   remove(e) 		remove node containing element matching e
-	//   contains(e)    is an element matching e stored in list
-	//   addAfter(e)    add element after node containing element matching e
 	
 	public String toString() {
-		String ret = "";
+		String ret = "head -> ";
 		ListNode<T> current = head;
 		while (current != null) {
-			ret += current.element + "\n";
+			ret += current.element + " -> ";
 			current = current.next;
 		}
-		return ret;
+		return ret + "tail";
 	}
 	
 	public T first() {
 		if (isEmpty()) {
 			throw new NoSuchElementException("Empty list");
 		}
-		
-		T ret = head.element;
-		
-		return ret;
+		return head.element;
 	}
 	
 	public T last() {
 		if (isEmpty()) {
 			throw new NoSuchElementException("Empty list");
 		}
-		T ret = tail.element;
-		return ret;
-	}	
-	
+		return tail.element;
+	}
 
+	@Override
 	public Iterator<T> iterator() {
 		return new ListIterator<T>(head);
 	}
-
+	
 	private class ListIterator<E> implements Iterator<E> {
 		private ListNode<E> current;
-
+		
 		public ListIterator(ListNode<E> start) {
 			current = start;
 		}
-
+		
+		@Override
 		public boolean hasNext() {
 			return (current != null);
 		}
 
+		@Override
 		public E next() {
-			if (!hasNext())
-				throw new NoSuchElementException();
+			if (!hasNext()) {
+				throw new NoSuchElementException("No more elements");
+			}
 			E ret = current.element;
 			current = current.next;
 			return ret;
 		}
-
-		public void remove() {
-		}
-
+		
 	}
 }
