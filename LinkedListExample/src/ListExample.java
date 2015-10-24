@@ -1,4 +1,4 @@
-import Lists.LinkedList;
+import lists.LinkedList;
 
 public class ListExample {
 
