@@ -59,10 +59,7 @@ public class LinkedList<T> implements Iterable<T> {
 		T ret = head.element;
 		head = head.next;
 		size --;
-		if (isEmpty()) {
-			tail = null;
-		}
-		if (size == 1) {
+		if (size <= 1) {
 			tail = head;
 		}
 		return ret;
@@ -138,11 +135,5 @@ public class LinkedList<T> implements Iterable<T> {
 			current = current.next;
 			return ret;
 		}
-
-		@Override
-		public void remove() {
-			// Do Nothing			
-		}
-		
 	}
 }
