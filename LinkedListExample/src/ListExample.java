@@ -12,6 +12,8 @@ public class ListExample {
 		myList.addToFront("World");
 		myList.addToFront("Hello");
 		
+		System.out.println(myList);
+		
 		System.out.println("Size = " + myList.size());
 		System.out.println("First = " + myList.first());
 		System.out.println("Last = " + myList.last());
@@ -55,7 +57,6 @@ public class ListExample {
 		System.out.println("\nFinishing up:");
 		myList.addToRear("end");
 		myList.addToFront("The");
-		System.out.println(myList);
+		System.out.println(myList);	
 	}
-
 }
