@@ -6,23 +6,23 @@ public class ListExample {
 	//	System.out.print("Hello, World, Chandler, Gilbert");
 
 		LinkedList<String> myList = new LinkedList<String>();
-		
+
 		myList.addToFront("Gilbert");
 		myList.addToFront("Chandler");
 		myList.addToFront("World");
 		myList.addToFront("Hello");
 		
 		System.out.println(myList);
-		
 		System.out.println("Size = " + myList.size());
 		System.out.println("First = " + myList.first());
 		System.out.println("Last = " + myList.last());
-		System.out.println(myList);
-		System.out.println("Iterator test:");
+
+		System.out.println("\nIterator test:");
 		for (String s: myList) {
 			System.out.print (s + ", ");
 		}
-		System.out.println();
+
+		System.out.println("\n");
 		if (myList.isEmpty()) {
 			System.out.println("List is empty");
 		}
