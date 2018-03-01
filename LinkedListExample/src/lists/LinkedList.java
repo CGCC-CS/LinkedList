@@ -48,8 +48,8 @@ public class LinkedList<T> implements Iterable<T> {
 			ListNode<T> newTail = new ListNode<T>(e, null);
 			tail.next = newTail;
 			tail = newTail;
+			size++;
 		}
-		size++;
 	}
 	
 	public T removeFirst() {
